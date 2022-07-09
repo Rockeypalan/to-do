@@ -17,9 +17,7 @@ app.use('/tasks', tasks);
 
 const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-    res.send(`Welcome...`);
-});
+
 
 (async () => {
     try {

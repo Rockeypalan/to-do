@@ -1,37 +1,59 @@
-.App {
-  width: 100vw;
-  height: 100vh;
-  background: #f5f5f5;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.heading {
-  font-size: 20px;
-  font-weight: bold;
+.container{
+  max-width: 600px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+h1{
   text-align: center;
 }
 
-.flex {
+.first{
+  margin-top: 1rem;
   display: flex;
+  gap: 1rem;
   justify-content: center;
-  align-items: center;
 }
 
-.container {
-  width: 500px;
-  min-height: 300px;
-  padding: 10px;
+input{
+  border: none;
+  outline: none;
+  width: 400px;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid rgb(89, 112, 245);
 }
 
-.task_container {
-  margin: 10px 0;
+.add{
+  background-color: rgb(87, 189, 236);
+  color: #fff;
+  padding: 0.5rem 1.5rem;
   cursor: pointer;
 }
 
-.task {
-  flex-grow: 1;
-  margin-left: 10px;
+.list{
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(87, 189, 236);
+  color: #fff;
+  padding: 1.5rem 3rem;
+  border-radius: 5px;
 }
 
-.line_through {
-  text-decoration: line-through;
+.icons{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+i{
+  cursor: pointer;
 }
