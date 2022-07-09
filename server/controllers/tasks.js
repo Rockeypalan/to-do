@@ -19,16 +19,21 @@ export const getTask = async (req, res) => {
 };
 
 export const updateTask = async (req, res) => {
-  const { id: taskID } = req.params;
-  const updatedTask = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
-    new: true,
-    runValidators: true,
-  });
-  res.status(200).send({ updatedTask });
+  const { _id, name } = req.body;
+  Task
+        .findByIdAndUpdate(_id, { name })
+        .then(() => res.set(201).send("Updated Successfully..."))
+        .catch((err) => console.log(err));
 };
 
+    
+
 export const deleteTask = async (req, res) => {
-  const { id: taskID } = req.params;
-  const deletedTask = await Task.findOneAndDelete({ _id: taskID });
-  res.status(200).send({ deletedTask });
+  const { _id } = req.body;
+  Task
+        .findByIdAndDelete(_id)
+        .then(() => res.set(201).send("Deleted Successfully..."))
+        .catch((err) => console.log(err));
 };
+
+    

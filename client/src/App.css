@@ -12,12 +12,17 @@
 h1{
   text-align: center;
 }
+#todo{
+  margin-top: 3rem;
+  color: #887bf8;
+}
 
 .first{
   margin-top: 1rem;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
+  
 }
 
 input{
@@ -28,20 +33,82 @@ input{
   border-bottom: 1px solid rgb(89, 112, 245);
 }
 
-.add{
-  background-color: rgb(87, 189, 236);
+.btn {
+  width: 100px;
+  font-size: 20px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: #c38b8b;
   color: #fff;
-  padding: 0.5rem 1.5rem;
   cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 15px;
+}
+
+.btn::before {
+  position: absolute;
+  content: "";
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    124deg,
+    #ff2400,
+    #e81d1d,
+    #e8b71d,
+    #e3e81d,
+    #1de840,
+    #1ddde8,
+    #2b1de8,
+    #dd00f3,
+    #dd00f3
+  );
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  animation: move 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #78e3f1;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .list{
   position: relative;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  background-color: rgb(87, 189, 236);
-  color: #fff;
-  padding: 1.5rem 3rem;
+  margin: 1rem 15rem 1rem 10rem;
+  color: rgb(14, 70, 145);
+  background-color: #fff;
+  padding: 0.5rem 0.5rem;
   border-radius: 5px;
 }
 
@@ -49,7 +116,7 @@ input{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 10px;
+  left: 200px;
   display: flex;
   gap: 0.5rem;
 }

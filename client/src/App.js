@@ -27,26 +27,29 @@ function App() {
     const addUpdateTask = () => {
 
         if (isUpdating === "") {
-          axios.post("http://localhost:5000/tasks", { text })
+          axios.post("http://localhost:5000/tasks", { name:text })
             .then((res) => {
               console.log(res.data.tasks);
               setText("");
+              window.location.reload()
             })
             .catch((err) => console.log(err));
         }else{
-          axios.put("http://localhost:5000/tasks/:id", { _id: isUpdating, text })
+          axios.post("http://localhost:5000/tasks/update", { _id: isUpdating, name:text })
             .then((res) => {
               console.log(res.data.tasks);
               setText("");
               setUpdating("");
+              window.location.reload()
             })
             .catch((err) => console.log(err));
         }
       }
     const deleteTask = (_id) => {
-        axios.delete("http://localhost:5000/tasks/:id", { _id })
+        axios.post("http://localhost:5000/tasks/delete", { _id })
           .then((res) => console.log(res.data))
           .catch((err) => console.log(err));
+          window.location.reload()
       }
     
       const updateTask = (_id, text) => {
@@ -58,7 +61,7 @@ function App() {
     return( 
         <div className='App'>
             <div className="container">
-                <h1>TO-DO APP</h1>
+                <h1 id='todo'>TO-DO APP</h1>
                 <div className='first'>
                     <input 
                         type="text"
@@ -66,8 +69,10 @@ function App() {
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         />
-                    <div className='btn btn-primary'onClick={addUpdateTask}>
-                        {isUpdating ? "Update" : "Add"}
+                        <div className='stage'>
+                          <div className='btn'onClick={addUpdateTask}>
+                            {isUpdating ? "Update" : "Add"}
+                          </div>
                         </div>
                 </div>
 
@@ -75,7 +80,7 @@ function App() {
             <div className="list">
                 
                     {tasks.map((task) => <List key={task._id} text={task.name}
-                    remove={() => deleteTask(task._id)} 
+                    remove={() => deleteTask(task._id, task.name)} 
                     update={() => updateTask(task._id, task.name)} />
                     
                                             )}
